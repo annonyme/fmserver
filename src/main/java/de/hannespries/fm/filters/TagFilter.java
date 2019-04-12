@@ -5,14 +5,17 @@ import de.hannespries.globalstate.Action;
 import de.hannespries.globalstate.FilterOperator;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class TagFilter extends FilterOperator {
     private Action action;
+    private Map<String, Tag> tagMap = new HashMap<>();
 
-    public TagFilter(Action action){
+    public TagFilter(Action action, Map<String, Tag> tagMap){
         this.action = action;
+        this.tagMap = tagMap;
     }
 
     public List<String> createCheckList(Action action){
@@ -53,6 +56,7 @@ public class TagFilter extends FilterOperator {
                     Tag tag = (Tag) item;
                     if(checkList.contains(tag.getName() + ":" + tag.getScope())){
                         result = true;
+                        this.tagMap.put(tag.getFkUserUUID(), tag);
                     }
                 }
             }

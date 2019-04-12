@@ -20,6 +20,7 @@ public class Login implements Reducer {
             user.setToken(action.getToken());
             user.setName(action.getPayload().get("name").toString());
             user.setUuid(UUID.randomUUID().toString());
+            user.setPublicId(UUID.randomUUID().toString());
             user.setLoginDate((new GregorianCalendar()).getTimeInMillis());
 
 
